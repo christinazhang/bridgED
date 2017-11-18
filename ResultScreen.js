@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
+import {languagesDict, languagesArray} from './const.js'
 
 // ResultScreen is given the IBM Watson result from the picture as an array in
 // the following format:
@@ -31,6 +32,8 @@ import {Text, View} from 'react-native';
 
 // You can access the parameters: this.props.navigation.state.params.data
 // To keep it less verbose, see below
+// For Input/Output languages:
+// this.props.navigation.state.params.inputLang
 
 export default class ResultScreen extends Component {
   static navigationOptions = {
