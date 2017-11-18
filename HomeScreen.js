@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 
 export default class HomeScreen extends Component {
+  static navigationOptions = {
+    header: null
+  }
   handlePress = () => {
     this.props.navigation.navigate('Camera');
   }
