@@ -37,29 +37,20 @@ export default class ResultScreen extends Component {
     title: 'Translation Result'
   }
 
+  constructor() {
+    super()
+    this.state = {
+      json: 0,
+    }
+  }
+
   render() {
+    //let rawjason = translate();
     const {state} = this.props.navigation;
     let dataArr = state.params.data;
-
-    //console.log(dataArr);
-/*
-    let sortedData = dataArr.sort(function(obj1, obj2) {
-      //console.log(obj1.score + " vs " + obj2.score);
-      return obj1.score < obj2.score});
-      console.log(sortedData);
-*/
-
-
     let topResult = dataArr[0].class;
-/*
-    // Translate api
-    let translated = translate(topResult, {to: 'zh-cn'}).then(res => {
-      console.log(res.text);
-      console.log(res.from.language.iso);
-    }).catch(err => {
-        console.error(err);
-    });*/
-    // ^ Translate api
+
+    console.log(this.state.json);
 
     return(
       <View>

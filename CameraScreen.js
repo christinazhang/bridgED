@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera, Permissions } from 'expo';
 
 let API_KEY = "***REMOVED***";
@@ -56,6 +56,37 @@ export default class CameraScreen extends Component {
     this.props.navigation.navigate('Result', {data: data})
   }
 
+  async translate() {
+    const {state} = this.props.navigation;
+    let dataArr = state.params.data;
+
+    let topResult = dataArr[0].class;
+    let formdata = new FormData();
+    let modelID = 'en-de';
+
+    formdata.append('image', {
+      text: topResult,
+      model_id: modelID,
+    });
+
+    let url = 'https://gateway.watsonplatform.net/language-translator/api/v2/translate';
+    let data = await fetch(url, {
+        method: 'post',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: formdata
+      }).then(response => {
+        return response;
+      }).catch(err => {
+        console.log(err)
+      })
+    let rawjson = await data.json();
+    console.log(rawjason);
+    this.state.json = rawjson;
+  }
+
   render() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
@@ -87,10 +118,9 @@ export default class CameraScreen extends Component {
                       : Camera.Constants.Type.back,
                   });
                 }}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                  {' '}Flip{' '}
-                </Text>
+                <Image
+                  source={require('./assets/img/Flip.png')}
+                />
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
@@ -99,10 +129,9 @@ export default class CameraScreen extends Component {
                   alignItems: 'center',
                 }}
                 onPress={this.snap}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                  {' '}Snap{' '}
-                </Text>
+                <Image
+                  source={require('./assets/img/Snap.png')}
+                />
               </TouchableOpacity>
             </View>
           </Camera>
