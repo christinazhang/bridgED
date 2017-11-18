@@ -28,6 +28,7 @@ export default class CameraScreen extends Component {
         uri: photoURI,
         type: 'image/jpg',
         name: 'image.jpg',
+        threshold: 0.7,
       });
 
       let url = 'https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=' + API_KEY + '&version=2016-05-20';
@@ -77,7 +78,6 @@ export default class CameraScreen extends Component {
               <TouchableOpacity
                 style={{
                   flex: 0.1,
-                  alignSelf: 'flex-end',
                   alignItems: 'center',
                 }}
                 onPress={() => {
@@ -94,7 +94,7 @@ export default class CameraScreen extends Component {
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  flex: 0.1,
+                  flex: 1,
                   alignSelf: 'flex-end',
                   alignItems: 'center',
                 }}
