@@ -52,7 +52,9 @@ export default class CameraScreen extends Component {
 
   snap = async () => {
     let data = await this.processImage();
-    this.props.navigation.navigate('Result', {data: data})
+    this.props.navigation.navigate('Result', {data: data,
+      inputLang: this.props.navigation.state.inputLang,
+    outputLang: this.props.navigation.state.outputLang})
   }
 
   render() {
