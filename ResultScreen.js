@@ -38,9 +38,16 @@ export default class ResultScreen extends Component {
   }
   render() {
     const {state} = this.props.navigation;
+    let dataArr = state.params.data;
+
+
+    let sortedData = dataArr.sort(function(obj1, obj2) {
+      return obj1.score < obj2.score});
+
+
     return(
       <View>
-        {state.params.data.map((obj, index) => (
+        {sortedData.map((obj, index) => (
           <Text key={index}>{obj.class}, {obj.score}</Text>
         ))}
       </View>
