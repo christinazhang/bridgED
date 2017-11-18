@@ -21,13 +21,34 @@ class HomeScreen extends React.Component {
 
   snap = async () => {
     if (this.camera) {
-      let photo = await this.camera.takePictureAsync();
-    }
-    let options = {
-      method: 'POST',
+    let photo = await this.camera.takePictureAsync();
+    let photoURI = await photo.uri;
+    let formdata = new FormData();
 
-    }
-    await fetch('', )
+    /*
+    formdata.append("product[name]", 'test')
+    formdata.append("product[price]", 10)
+    formdata.append("product[category_ids][]", 2)
+    formdata.append("product[description]", '12dsadadsa')*/
+    formdata.append('image', {
+      uri: photo.uri,
+      type: 'image/jpg',
+      name: 'image.jpg',
+    });
+
+    let url = 'https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=' + API_KEY + '&version=2016-05-20';
+    let data = await fetch(url, {
+        method: 'post',
+        body: formdata
+      }).then(response => {
+        console.log("image uploaded ")
+      }).catch(err => {
+        console.log(err)
+      })
+    console.log(data);
+    let rawjson = await data.json();
+    console.log(rawjson);
+    return rawjson;
   };
 
   render() {
