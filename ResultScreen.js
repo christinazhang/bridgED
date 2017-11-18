@@ -40,10 +40,13 @@ export default class ResultScreen extends Component {
     const {state} = this.props.navigation;
     let dataArr = state.params.data;
 
+    //console.log(dataArr);
 
     let sortedData = dataArr.sort(function(obj1, obj2) {
+      //console.log(obj1.score + " vs " + obj2.score);
       return obj1.score < obj2.score});
 
+      //console.log(sortedData);
 
     return(
       <View>
