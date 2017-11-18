@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 // ResultScreen is given the IBM Watson result from the picture as an array in
 // the following format:
