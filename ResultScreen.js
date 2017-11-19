@@ -37,11 +37,34 @@ import {ResultTitle} from './const'
 // this.props.navigation.state.params.inputLang
 
 export default class ResultScreen extends Component {
+  constructor() {
+    super();
+    this.state = {translation: ''}
+  }
   static navigationOptions = ({navigation}) => (
     {
       title: ResultTitle[navigation.state.params.inputLang]
     }
   );
+
+  async componentWillMount() {
+    const {params} = this.props.navigation.state;
+    let t = params.data[0].class;
+    let url = 'https://gateway.watsonplatform.net/language-translator/api/v2/translate?source=' + params.inputLang + '&target=' + params.outputLang + '&text=' + t
+    let translation = await fetch(url, {
+        method: 'get',
+        headers: {
+          'Authorization': 'Basic OTBhZDViNjgtZjU5YS00NzQxLTg2NGQtYmVlOGE0ZjYzZjcxOmxseW83aDdueEttNQ=='
+        },
+        text: t
+      }).then(response => {
+        return response._bodyInit;
+      }).catch(err => {
+        console.log(err)
+      })
+      console.log(translation);
+      this.setState({translation: translation})
+  }
   render() {
     const {state} = this.props.navigation;
     return(

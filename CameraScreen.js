@@ -42,7 +42,7 @@ export default class CameraScreen extends Component {
           method: 'post',
           headers: {
             "Accept": "application/json",
-            "Accept-Language": "en",
+            "Accept-Language": this.props.navigation.state.params.inputLang,
             "Content-Type": "multipart/form-data"
           },
           body: formdata
