@@ -11,7 +11,8 @@ export default class CameraScreen extends Component {
     this.state = {
       hasCameraPermission: null,
       type: Camera.Constants.Type.back,
-      uri: ''
+      uri: '',
+      picture: false
     };
   }
 
@@ -62,10 +63,16 @@ export default class CameraScreen extends Component {
 
   snap = async () => {
     let data = await this.processImage();
+    this.setState({picture: !this.state.picture});
     this.props.navigation.navigate('Result', {data: data,
       uri: this.state.uri,
       inputLang: this.props.navigation.state.params.inputLang,
-    outputLang: this.props.navigation.state.params.outputLang})
+    outputLang: this.props.navigation.state.params.outputLang});
+  }
+
+  test = () => {
+      this.setState({picture: !this.state.picture});
+      this.snap();
   }
 
   render() {
@@ -108,7 +115,7 @@ export default class CameraScreen extends Component {
                   style={{
                     alignSelf: 'center',
                   }}
-                  onPress={this.snap}>
+                  onPress={() => (!this.state.picture && this.test())}>
                   <Image
                     style={{margin: 16, height: 60, width: 60}}
                     source={require('./assets/img/Snap.png')}

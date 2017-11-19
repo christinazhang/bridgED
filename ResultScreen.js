@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Text, ScrollView, View, Image, StyleSheet, Dimensions} from 'react-native';
-import {languagesDict, languagesArray} from './const.js'
-import {ResultTitle} from './const'
+import {languagesDict, languagesArray, ResultTitle} from './const.js'
 
 // ResultScreen is given the IBM Watson result from the picture as an array in
 // the following format:
