@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, Image} from 'react-native';
 import {languagesDict, languagesArray} from './const.js'
 import {ResultTitle} from './const'
 
@@ -39,7 +39,7 @@ import {ResultTitle} from './const'
 export default class ResultScreen extends Component {
   constructor() {
     super();
-    this.state = {translation: ''}
+    this.state = {translation: '', img: ''}
   }
   static navigationOptions = ({navigation}) => (
     {
@@ -63,15 +63,33 @@ export default class ResultScreen extends Component {
         console.log(err)
       })
       console.log(translation);
-      this.setState({translation: translation})
+      this.setState({translation: translation});
+/*
+      let str = params.data[0].class;
+
+      let api = "AIzaSyBVVbxDT9RAFGv6gj-emTS7HD9lbWN50mQ";
+      url = "https://www.googleapis.com/customsearch/v1?key=" + api + "&cx=015596321862413156668:gxgkobpaaoq&q=" + str.replace("//g", "%20");
+      let data = await fetch(url);
+      let rawjson = await data.json();
+
+      console.log(rawjson);
+      this.setState({img:rawjson});*/
   }
+
   render() {
     const {params} = this.props.navigation.state;
+
+    let str = params.data[0].class;
+    let uriMe = params.uri;
+
     return(
       <View>
-        {params.data.map((obj, index) => (
-          <Text key={index}>{obj.class}, {obj.score}</Text>
-        ))}
+        <Text>{params.outputLang}  |  {params.inputLang}</Text>
+        <Text>{this.state.translation} | {str}</Text>
+        <Image
+          style={{width: 250, height: 250}}
+          source={{uri:uriMe}}
+        />
       </View>
     )
   }

@@ -11,6 +11,7 @@ export default class CameraScreen extends Component {
     this.state = {
       hasCameraPermission: null,
       type: Camera.Constants.Type.back,
+      uri: ''
     };
   }
 
@@ -29,6 +30,7 @@ export default class CameraScreen extends Component {
     if (this.camera) {
       let photo = await this.camera.takePictureAsync();
       let photoURI = await photo.uri;
+      this.setState({uri: photoURI});
       let formdata = new FormData();
 
       formdata.append('image', {
@@ -61,39 +63,9 @@ export default class CameraScreen extends Component {
   snap = async () => {
     let data = await this.processImage();
     this.props.navigation.navigate('Result', {data: data,
+      uri: this.state.uri,
       inputLang: this.props.navigation.state.params.inputLang,
     outputLang: this.props.navigation.state.params.outputLang})
-  }
-
-  async translate() {
-    const {state} = this.props.navigation;
-    let dataArr = state.params.data;
-
-    let topResult = dataArr[0].class;
-    let formdata = new FormData();
-    let modelID = 'en-de';
-
-    formdata.append('image', {
-      text: topResult,
-      model_id: modelID,
-    });
-
-    let url = 'https://gateway.watsonplatform.net/language-translator/api/v2/translate';
-    let data = await fetch(url, {
-        method: 'post',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: formdata
-      }).then(response => {
-        return response;
-      }).catch(err => {
-        console.log(err)
-      })
-    let rawjson = await data.json();
-    console.log(rawjason);
-    this.state.json = rawjson;
   }
 
   render() {
