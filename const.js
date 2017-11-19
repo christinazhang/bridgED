@@ -13,12 +13,11 @@ export var chooseArray = {
   de: [
         {lbl: 'Ich möchte Englisch lernen', val: 'en'}
   ],
-  fr: [
-        {lbl: "Je veux apprendre l'anglais", val: 'en'},
-        {lbl: "Je veux apprendre l'espagnol", val: 'es'}
-  ],
   it: [
         {lbl: "Voglio imparare l'inglese.", val: 'en'}
+  ],
+  ja: [
+        {lbl: "英語を習いたいです", val: 'en'}
   ],
   es: [
         {lbl: 'Quiero aprender inglés', val: 'en'},

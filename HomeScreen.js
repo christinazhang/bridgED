@@ -18,7 +18,7 @@ export default class HomeScreen extends Component {
   render() {
     const {state} = this.props.navigation;
     return (
-      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+      <View style={{flexDirection: 'column'}}>
         <Picker
             selectedValue={this.state.inputLang}
             onValueChange={(item, index) => this.setState({inputLang: item, outputLang: chooseArray[item][0].val})}>
