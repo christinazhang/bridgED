@@ -65,14 +65,34 @@ export default class ResultScreen extends Component {
       console.log(translation);
       this.setState({translation: translation})
   }
+
+  constructor() {
+    super()
+    this.state = {
+      json: 0,
+    }
+  }
+
   render() {
+    //let rawjason = translate();
     const {state} = this.props.navigation;
+    let dataArr = state.params.data;
+    let topResult = dataArr[0].class;
+
+    console.log(this.state.json);
+
     return(
       <View>
-        {state.params.data.map((obj, index) => (
+        <Text>{topResult}      |       translated</Text>
+      </View>
+    )
+
+    /*return(
+      <View>
+        {sortedData.map((obj, index) => (
           <Text key={index}>{obj.class}, {obj.score}</Text>
         ))}
       </View>
-    )
+    )*/
   }
 }

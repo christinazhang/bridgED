@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
 import { Camera, Permissions } from 'expo';
 import {CameraTitle} from './const'
 
@@ -35,6 +35,7 @@ export default class CameraScreen extends Component {
         uri: photoURI,
         type: 'image/jpg',
         name: 'image.jpg',
+        threshold: 0.7,
       });
 
       let url = 'https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=' + API_KEY + '&version=2016-05-20';
@@ -64,6 +65,37 @@ export default class CameraScreen extends Component {
     outputLang: this.props.navigation.state.params.outputLang})
   }
 
+  async translate() {
+    const {state} = this.props.navigation;
+    let dataArr = state.params.data;
+
+    let topResult = dataArr[0].class;
+    let formdata = new FormData();
+    let modelID = 'en-de';
+
+    formdata.append('image', {
+      text: topResult,
+      model_id: modelID,
+    });
+
+    let url = 'https://gateway.watsonplatform.net/language-translator/api/v2/translate';
+    let data = await fetch(url, {
+        method: 'post',
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: formdata
+      }).then(response => {
+        return response;
+      }).catch(err => {
+        console.log(err)
+      })
+    let rawjson = await data.json();
+    console.log(rawjason);
+    this.state.json = rawjson;
+  }
+
   render() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
@@ -86,7 +118,6 @@ export default class CameraScreen extends Component {
               <TouchableOpacity
                 style={{
                   flex: 0.1,
-                  alignSelf: 'flex-end',
                   alignItems: 'center',
                 }}
                 onPress={() => {
@@ -96,22 +127,20 @@ export default class CameraScreen extends Component {
                       : Camera.Constants.Type.back,
                   });
                 }}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                  {' '}Flip{' '}
-                </Text>
+                <Image
+                  source={require('./assets/img/Flip.png')}
+                />
               </TouchableOpacity>
               <TouchableOpacity
                 style={{
-                  flex: 0.1,
+                  flex: 1,
                   alignSelf: 'flex-end',
                   alignItems: 'center',
                 }}
                 onPress={this.snap}>
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
-                  {' '}Snap{' '}
-                </Text>
+                <Image
+                  source={require('./assets/img/Snap.png')}
+                />
               </TouchableOpacity>
             </View>
           </Camera>
