@@ -1,16 +1,3 @@
-export var speakDict = {
-  'I speak English': 'en',
-  '나는 한국말을한다': 'ko',
-  'أنا أتحدث العربية': 'ar',
-  'Ich spreche Deutsch': 'de',
-  'Eu falo português': 'pt',
-  'Je parle français': 'fr',
-  'فوقي بيتكلم عربى.': 'arz',
-  'Parlo italiano': 'it',
-  'Hablo español': 'es',
-  '私は日本語を話す': 'ja'
-}
-
 export var chooseArray = {
   en: [
         {lbl: 'I want to learn Korean', val: 'ko'},
@@ -26,21 +13,12 @@ export var chooseArray = {
   de: [
         {lbl: 'Ich möchte Englisch lernen', val: 'en'}
   ],
-  pt: [
-        {lbl: 'Eu quero aprender inglês', val: 'en'}
-  ],
   fr: [
         {lbl: "Je veux apprendre l'anglais", val: 'en'},
         {lbl: "Je veux apprendre l'espagnol", val: 'es'}
   ],
-  arz: [
-        {lbl: "نفسى اتعلم انجليزى.", val: 'en'}
-  ],
   it: [
         {lbl: "Voglio imparare l'inglese.", val: 'en'}
-  ],
-  ja: [
-        {lbl: "英語を習いたいです", val: 'en'}
   ],
   es: [
         {lbl: 'Quiero aprender inglés', val: 'en'},
@@ -58,11 +36,8 @@ export var speakArray = [
   {val: 'en', lbl: 'I speak English'},
   {val: 'es', lbl: 'Hablo español'},
   {val: 'ja', lbl: '私は日本語を話す'},
-  {val: 'arz', lbl: 'أنا أتحدث العربية'},
   {val: 'de', lbl: 'Ich spreche Deutsch'},
-  {val: 'pt', lbl: 'Eu falo português'},
-  {val: 'fr', lbl: 'Je parle français'},
-  {val: 'arz', lbl: 'فوقي بيتكلم عربى.'},
+  {val: 'ar', lbl: 'أنا أتحدث العربية'},
   {val: 'it', lbl: 'Parlo italiano'},
   {val: 'ko', lbl: '나는 한국말을한다'},
 ]
