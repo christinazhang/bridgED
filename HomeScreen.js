@@ -5,7 +5,7 @@ import {speakArray, chooseArray} from './const.js'
 export default class HomeScreen extends Component {
   constructor() {
     super();
-    this.state = {inputLang: 'en', outputLang: 'en'};
+    this.state = {inputLang: 'en', outputLang: 'ko'};
   }
   static navigationOptions = {
     header: null
@@ -18,7 +18,7 @@ export default class HomeScreen extends Component {
   render() {
     const {state} = this.props.navigation;
     return (
-      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
+      <View style={{flexDirection: 'column'}}>
         <Picker
             selectedValue={this.state.inputLang}
             onValueChange={(item, index) => this.setState({inputLang: item, outputLang: chooseArray[item][0].val})}>
