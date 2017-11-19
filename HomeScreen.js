@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, Picker } from 'react-native';
+import { Image, View, Picker, TouchableOpacity } from 'react-native';
 import {speakArray, chooseArray} from './const.js'
 
 export default class HomeScreen extends Component {
@@ -18,7 +18,7 @@ export default class HomeScreen extends Component {
   render() {
     const {state} = this.props.navigation;
     return (
-      <View>
+      <View style={{flexDirection: 'column', justifyContent: 'center'}}>
         <Picker
             selectedValue={this.state.inputLang}
             onValueChange={(item, index) => this.setState({inputLang: item})}>
@@ -33,7 +33,9 @@ export default class HomeScreen extends Component {
               <Picker.Item key={index} label={languageObject.lbl} value={languageObject.val} />
             ))}
           </Picker>
-        <Text onPress={this.handlePressNext}>Next</Text>
+          <TouchableOpacity style={{alignSelf:'center'}} onPress={this.handlePressNext} >
+            <Image style={{height: 70, width: 70}} source={require('./assets/img/Camera.png')}/>
+          </TouchableOpacity>
       </View>
     )
   }

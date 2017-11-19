@@ -113,35 +113,35 @@ export default class CameraScreen extends Component {
               style={{
                 flex: 1,
                 backgroundColor: 'transparent',
-                flexDirection: 'row',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
               }}>
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignItems: 'center',
-                }}
-                onPress={() => {
-                  this.setState({
-                    type: this.state.type === Camera.Constants.Type.back
-                      ? Camera.Constants.Type.front
-                      : Camera.Constants.Type.back,
-                  });
-                }}>
-                <Image
-                  source={require('./assets/img/Flip.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  flex: 1,
-                  alignSelf: 'flex-end',
-                  alignItems: 'center',
-                }}
-                onPress={this.snap}>
-                <Image
-                  source={require('./assets/img/Snap.png')}
-                />
-              </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'flex-end'
+                  }}
+                  onPress={() => {
+                    this.setState({
+                      type: this.state.type === Camera.Constants.Type.back
+                        ? Camera.Constants.Type.front
+                        : Camera.Constants.Type.back,
+                    });
+                  }}>
+                  <Image
+                    style={{margin: 16, height: 38, width: 45}}
+                    source={require('./assets/img/Flip.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={{
+                    alignSelf: 'center',
+                  }}
+                  onPress={this.snap}>
+                  <Image
+                    style={{margin: 16, height: 60, width: 60}}
+                    source={require('./assets/img/Snap.png')}
+                  />
+                </TouchableOpacity>
             </View>
           </Camera>
         </View>
