@@ -5,7 +5,7 @@ import {speakArray, chooseArray} from './const.js'
 export default class HomeScreen extends Component {
   constructor() {
     super();
-    this.state = {inputLang: 'en', outputLang: 'ko'};
+    this.state = {inputLang: 'en', outputLang: 'en'};
   }
   static navigationOptions = {
     header: null

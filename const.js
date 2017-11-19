@@ -48,7 +48,6 @@ export var chooseArray = {
   ],
   ko: [
         {lbl: '나는 영어를 배우고 싶다', val: 'en'},
-        {lbl: '나는 아랍어를 배우고 싶다', val: 'ar'}
   ],
   ar: [
         {lbl: 'أريد أن أتعلم اللغة الإنجليزية', val: 'en'},
@@ -59,7 +58,7 @@ export var speakArray = [
   {val: 'en', lbl: 'I speak English'},
   {val: 'es', lbl: 'Hablo español'},
   {val: 'ja', lbl: '私は日本語を話す'},
-  {val: 'ar', lbl: 'أنا أتحدث العربية'},
+  {val: 'arz', lbl: 'أنا أتحدث العربية'},
   {val: 'de', lbl: 'Ich spreche Deutsch'},
   {val: 'pt', lbl: 'Eu falo português'},
   {val: 'fr', lbl: 'Je parle français'},
@@ -72,7 +71,7 @@ export var CameraTitle = {
   en: 'Take Photo',
   de: 'Foto übernehmen',
   pt: 'Tire uma foto',
-  fr: 'Tire uma foto',
+  fr: 'Prendre Une Photo',
   arz: 'بالصور',
   it: 'Prendi una foto',
   es: 'Tomar foto',

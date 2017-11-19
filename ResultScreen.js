@@ -104,7 +104,7 @@ export default class ResultScreen extends Component {
           style={styles.image}
           source={{uri:uriMe}}
         />
-        <Text style={{margin: 10}}>{this.state.blurb}</Text>
+        <Text style={{marginLeft: 25, marginBottom: 25, marginRight: 25}}>{this.state.blurb}</Text>
       </ScrollView>
     )
   }
