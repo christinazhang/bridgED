@@ -21,7 +21,7 @@ export default class HomeScreen extends Component {
       <View style={{flexDirection: 'column', justifyContent: 'center'}}>
         <Picker
             selectedValue={this.state.inputLang}
-            onValueChange={(item, index) => this.setState({inputLang: item})}>
+            onValueChange={(item, index) => this.setState({inputLang: item, outputLang: chooseArray[item][0].val})}>
             {speakArray.map((languageObject, index) => (
               <Picker.Item key={index} label={languageObject.lbl} value={languageObject.val} />
             ))}

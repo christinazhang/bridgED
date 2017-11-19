@@ -31,7 +31,7 @@ export var chooseArray = {
   ],
   fr: [
         {lbl: "Je veux apprendre l'anglais", val: 'en'},
-        {lbl: "je veux apprendre l'espagnol", val: 'es'}
+        {lbl: "Je veux apprendre l'espagnol", val: 'es'}
   ],
   arz: [
         {lbl: "نفسى اتعلم انجليزى.", val: 'en'}
@@ -66,7 +66,6 @@ export var speakArray = [
   {val: 'arz', lbl: 'فوقي بيتكلم عربى.'},
   {val: 'it', lbl: 'Parlo italiano'},
   {val: 'ko', lbl: '나는 한국말을한다'},
-  {val: 'ar', lbl: 'أنا أتحدث العربية'}
 ]
 
 export var CameraTitle = {

@@ -56,7 +56,6 @@ export default class CameraScreen extends Component {
           console.log(err)
         })
       let rawjson = await data.json();
-      //console.log(rawjson.images[0]);
       return rawjson.images[0].classifiers[0].classes;
     }
   }
