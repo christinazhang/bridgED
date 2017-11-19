@@ -1,17 +1,24 @@
 import React, {Component} from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { Camera, Permissions } from 'expo';
+import {CameraTitle} from './const'
 
 let API_KEY = "***REMOVED***";
 
 export default class CameraScreen extends Component {
-  static navigationOptions = {
-    title: 'Take Photo'
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasCameraPermission: null,
+      type: Camera.Constants.Type.back,
+    };
   }
-  state = {
-    hasCameraPermission: null,
-    type: Camera.Constants.Type.back,
-  };
+
+  static navigationOptions = ({navigation}) => (
+    {
+      title: CameraTitle[navigation.state.params.inputLang]
+    }
+  );
 
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -53,8 +60,8 @@ export default class CameraScreen extends Component {
   snap = async () => {
     let data = await this.processImage();
     this.props.navigation.navigate('Result', {data: data,
-      inputLang: this.props.navigation.state.inputLang,
-    outputLang: this.props.navigation.state.outputLang})
+      inputLang: this.props.navigation.state.params.inputLang,
+    outputLang: this.props.navigation.state.params.outputLang})
   }
 
   render() {

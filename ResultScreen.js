@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import {languagesDict, languagesArray} from './const.js'
+import {ResultTitle} from './const'
 
 // ResultScreen is given the IBM Watson result from the picture as an array in
 // the following format:
@@ -36,9 +37,11 @@ import {languagesDict, languagesArray} from './const.js'
 // this.props.navigation.state.params.inputLang
 
 export default class ResultScreen extends Component {
-  static navigationOptions = {
-    title: 'Translation Result'
-  }
+  static navigationOptions = ({navigation}) => (
+    {
+      title: ResultTitle[navigation.state.params.inputLang]
+    }
+  );
   render() {
     const {state} = this.props.navigation;
     return(
