@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image, StyleSheet, Dimensions, ActivityIndicator} from 'react-native';
 import { Camera, Permissions } from 'expo';
 import {CameraTitle} from './const'
 
@@ -75,6 +75,16 @@ export default class CameraScreen extends Component {
       this.snap();
   }
 
+  loadingOverlay = () => {
+    if(this.state.picture) {
+      return (
+        <View style={styles.overlay}>
+          <ActivityIndicator style={{alignSelf:'center'}} animating={true} color='white'/>
+        </View>
+      )
+    }
+  }
+
   render() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
@@ -123,8 +133,24 @@ export default class CameraScreen extends Component {
                 </TouchableOpacity>
             </View>
           </Camera>
+          {this.loadingOverlay()}
         </View>
       );
     }
   }
 }
+
+const styles = StyleSheet.create({
+  overlay: {
+      flex: 1,
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      opacity: 0.5,
+      backgroundColor: 'black',
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+      flexDirection: 'column',
+      justifyContent: 'center'
+    }
+  });
