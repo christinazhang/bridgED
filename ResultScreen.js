@@ -88,14 +88,14 @@ export default class ResultScreen extends Component {
           <View style={{flexDirection: 'column',
                       alignItems: 'flex-end',
                       margin: 10,
-                      width: ((Dimensions.get('window').width - 30) / 3)}}>
+                      width: ((Dimensions.get('window').width - 20) / 2)}}>
             <Text>{params.outputLang.toUpperCase()}</Text>
             <Text style={styles.titleTextRight}>{this.state.translation}</Text>
           </View>
           <View style={{backgroundColor: '#222', width: 3,
             height: 120}}></View>
           <View style={{flexDirection: 'column',
-          width: ((Dimensions.get('window').width - 30) / 3)*2, margin: 10}}>
+          width: ((Dimensions.get('window').width - 20) / 2), margin: 10}}>
             <Text>{params.inputLang.toUpperCase()}</Text>
             <Text style={styles.titleText}>{inputResult}</Text>
           </View>
