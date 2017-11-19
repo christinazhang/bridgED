@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View, TouchableOpacity, Image } from 'react-native';
+import { Text, View, TouchableOpacity, Image, StyleSheet, Dimensions, ActivityIndicator} from 'react-native';
 import { Camera, Permissions } from 'expo';
 import {CameraTitle} from './const'
 
@@ -11,6 +11,8 @@ export default class CameraScreen extends Component {
     this.state = {
       hasCameraPermission: null,
       type: Camera.Constants.Type.back,
+      uri: '',
+      picture: false
     };
   }
 
@@ -29,6 +31,7 @@ export default class CameraScreen extends Component {
     if (this.camera) {
       let photo = await this.camera.takePictureAsync();
       let photoURI = await photo.uri;
+      this.setState({uri: photoURI});
       let formdata = new FormData();
 
       formdata.append('image', {
@@ -53,47 +56,32 @@ export default class CameraScreen extends Component {
           console.log(err)
         })
       let rawjson = await data.json();
-      //console.log(rawjson.images[0]);
       return rawjson.images[0].classifiers[0].classes;
     }
   }
 
   snap = async () => {
     let data = await this.processImage();
+    this.setState({picture: !this.state.picture});
     this.props.navigation.navigate('Result', {data: data,
+      uri: this.state.uri,
       inputLang: this.props.navigation.state.params.inputLang,
-    outputLang: this.props.navigation.state.params.outputLang})
+    outputLang: this.props.navigation.state.params.outputLang});
   }
 
-  async translate() {
-    const {state} = this.props.navigation;
-    let dataArr = state.params.data;
+  test = () => {
+      this.setState({picture: !this.state.picture});
+      this.snap();
+  }
 
-    let topResult = dataArr[0].class;
-    let formdata = new FormData();
-    let modelID = 'en-de';
-
-    formdata.append('image', {
-      text: topResult,
-      model_id: modelID,
-    });
-
-    let url = 'https://gateway.watsonplatform.net/language-translator/api/v2/translate';
-    let data = await fetch(url, {
-        method: 'post',
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: formdata
-      }).then(response => {
-        return response;
-      }).catch(err => {
-        console.log(err)
-      })
-    let rawjson = await data.json();
-    console.log(rawjason);
-    this.state.json = rawjson;
+  loadingOverlay = () => {
+    if(this.state.picture) {
+      return (
+        <View style={styles.overlay}>
+          <ActivityIndicator style={{alignSelf:'center'}} animating={true} color='white'/>
+        </View>
+      )
+    }
   }
 
   render() {
@@ -136,7 +124,7 @@ export default class CameraScreen extends Component {
                   style={{
                     alignSelf: 'center',
                   }}
-                  onPress={this.snap}>
+                  onPress={() => (!this.state.picture && this.test())}>
                   <Image
                     style={{margin: 16, height: 60, width: 60}}
                     source={require('./assets/img/Snap.png')}
@@ -144,8 +132,24 @@ export default class CameraScreen extends Component {
                 </TouchableOpacity>
             </View>
           </Camera>
+          {this.loadingOverlay()}
         </View>
       );
     }
   }
 }
+
+const styles = StyleSheet.create({
+  overlay: {
+      flex: 1,
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      opacity: 0.5,
+      backgroundColor: 'black',
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+      flexDirection: 'column',
+      justifyContent: 'center'
+    }
+  });
