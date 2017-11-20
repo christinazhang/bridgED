@@ -6,7 +6,7 @@ export var chooseArray = {
         {lbl: 'I want to learn German', val: 'de'},
         {lbl: 'I want to learn Portugese', val: 'pt'},
         {lbl: 'I want to learn French', val: 'fr'},
-        {lbl: 'I want to learn Egyption Arabic', val: 'arz'},
+        {lbl: 'I want to learn Egyptian Arabic', val: 'arz'},
         {lbl: 'I want to learn Italian', val: 'it'},
         {lbl: 'I want to learn Japanese', val: 'ja'}
   ],
