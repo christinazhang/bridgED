@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet, Dimensions, ActivityIndicator} from 'react-native';
 import { Camera, Permissions } from 'expo';
 import {CameraTitle} from './const'
-
-let API_KEY = "***REMOVED***";
+import {API_KEY} from './key'
 
 export default class CameraScreen extends Component {
   constructor(props) {
